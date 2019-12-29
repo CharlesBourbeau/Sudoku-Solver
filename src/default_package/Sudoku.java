@@ -1,6 +1,7 @@
 package default_package;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 
 public class Sudoku {
@@ -163,6 +164,9 @@ public class Sudoku {
             tempLabel.setText("");
         } else {
             tempLabel.setText("" + number);
+            if(isInitialNumbers){
+                tempLabel.setFont(new Font("Dialogue", Font.BOLD, 25));
+            }
         }
     }
 
