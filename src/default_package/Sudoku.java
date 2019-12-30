@@ -151,7 +151,7 @@ public class Sudoku {
 
         if(!isInitialNumbers){
             try{
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch(InterruptedException e){
                 System.out.println(""+ e);
             }
@@ -168,6 +168,7 @@ public class Sudoku {
                 tempLabel.setFont(new Font("Dialogue", Font.BOLD, 25));
             }
         }
+        Main.frame.repaint();
     }
 
 
