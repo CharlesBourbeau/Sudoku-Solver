@@ -16,6 +16,8 @@ public class Main{
     public static JButton solveButton;
     public static JFrame frame;
 
+    public static boolean solveButtonClicked = false;
+
     static int[][] preMadeSudoku = {
 
             {0, 0, 0, 0, 7, 0, 0, 0, 0},
@@ -48,18 +50,11 @@ public class Main{
         solveButton = new JButton("Solve!");
         solveButton.addActionListener(new ActionListener() {
 
-            Runnable changer = new Runnable() {
-                @Override
-                public void run() {
-                    Main.startSolver();
-                }
-            };
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == solveButton){
                     System.out.println("Clicked solve!");
-                    Thread t1 = new Thread(changer);
-                    t1.start();
+                    solveButtonClicked = true;
                 }
             }
         });
@@ -98,12 +93,17 @@ public class Main{
 
         Sudoku.isInitialNumbers = false;
 
-        try{
-            Thread.sleep(5000);
-        } catch(InterruptedException e){
-            System.out.println(""+ e);
+
+        while(true){
+            // bait print to stay inside the infinite loop
+            System.out.println("");
+            if(solveButtonClicked){
+                // the asynchronous event of clicking the solve button is initiated here
+                startSolver();
+                solveButtonClicked = false;
+            }
         }
-        startSolver();
+
 
     }
 
